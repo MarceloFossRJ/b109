@@ -1,0 +1,18 @@
+<table class="table table-striped">
+  <thead>
+  	<tr>
+    	<th>Comment</th>
+    	<th>User</th>
+    	<th></th>
+  	</tr>
+  </thead>
+  <tbody>
+<% @comments.each do |comment| %>
+  	<tr>
+    	<td><%= comment.comment %></td>
+    	<td><%= comment.user_id %></td>
+  	</tr>
+<% end %>
+  </tbody>
+</table>
+

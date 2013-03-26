@@ -1,0 +1,42 @@
+<%- model_class = Category -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+
+<%= search_form_for @q, :builder => SimpleForm::FormBuilder, :html => { :class => 'form-horizontal' }  do |f| %>
+	<div class="field">
+		<%= f.input :name_cont, label: "Name contains" %>
+	</div>
+	<div class="actions"><%= f.button :submit, :class => 'btn-primary', :value => 'Search' %></div>
+<% end %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= sort_link @q, :id, model_class.human_attribute_name(:id) %></th>
+      <th><%= sort_link @q, :name, model_class.human_attribute_name(:name) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= link_to category.id, category_path(category) %></td>
+        <td><%= category.name %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_category_path(category), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      category_path(category),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @categories %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_category_path,
+            :class => 'btn btn-primary' %>

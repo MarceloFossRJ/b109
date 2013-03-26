@@ -1,0 +1,8 @@
+<%- model_class = Tag -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<%= render :partial => 'tags'%>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_post_tag_path,
+            :class => 'btn btn-primary' %>

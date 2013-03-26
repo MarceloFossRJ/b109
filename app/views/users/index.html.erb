@@ -1,0 +1,81 @@
+<%- model_class = User -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+
+
+<div class="accordion" id="accordion2">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+		Advanced Search			
+	  </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse">
+      <div class="accordion-inner">
+		<%= search_form_for @q, :html => { :class => 'form-horizontal' }  do |f| %>
+			<%= f.condition_fields do |c| %>
+				<%= render "condition_fields", f: c%>
+			<% end %>
+			</br>
+			<%= link_to_add_fields "Add Conditions", f, :condition %>
+			<%= f.button :submit, :class => 'btn-primary', :value => 'Search' %>
+		<% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#">List</a></li>
+  <li><%= link_to t('.new', :default => t("helpers.links.new")),new_user_path %></li>
+  <li><a href="#">Versions</a></li>	
+  <li><a href="#">Advanced Search</a></li>
+  <li class="pull-right">
+		<%= search_form_for @q, :html => { :class => 'navbar-search pull-right' }   do |f| %>		
+				<%= f.text_field :name_cont, :class => 'search-query', :placeholder => "Search User Name" %>
+		<% end %>
+  </li>
+</ul>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= sort_link @q, :name, model_class.human_attribute_name(:name) %></th>
+      <th><%= sort_link @q, :login, model_class.human_attribute_name(:login) %></th>
+      <th><%= sort_link @q, :email, model_class.human_attribute_name(:email) %></th>
+      <th><%= sort_link @q, :is_admin, model_class.human_attribute_name(:is_admin) %></th>
+      <th><%= sort_link @q, :is_active, model_class.human_attribute_name(:is_active) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.login %></td>
+        <td><%= user.email %></td>
+        <td><%= user.is_admin %></td>
+        <td><%= user.is_active %></td>
+
+        <td>
+		  <%= link_to t('.show', :default => t("helpers.links.show")),
+	                      user_path(user), :class => 'btn btn-mini' %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_user_path(user), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      user_path(user),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @users %>
+

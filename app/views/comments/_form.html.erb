@@ -1,0 +1,18 @@
+<%= form_for [@commentable, @comment] do |f| %>
+<table class="table table-striped">
+  <tbody>
+  	<tr>
+    	<td>	
+			<%= f.text_area :comment, :size => '40x5', :class => "tinymce" %>
+			 <%= tinymce %>
+    	</td>
+    	<td>
+			<%= f.collection_select :user_id, User.all, :id, :name %>
+    	</td>
+  </tbody>
+</table>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+  </div>
+<% end %>

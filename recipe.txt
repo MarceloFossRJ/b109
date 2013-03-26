@@ -1,0 +1,29 @@
+Install procedures
+
+	$ rails g bootstrap:install
+	$ rails generate simple_form:install --bootstrap
+	$ rails g paper_trail:install
+
+	if database = postgresql
+		$ createdb <<database name>>
+		$ psql <<database name>>
+		<<database name>>$ create user <<user name>> with password '<<user name>>'
+		<<database name>>$ grant all privileges on database <<database name>> to <<user name>>;
+		<<database name>>$ \q
+		to list all db: 
+			$ \l
+		to connect to another db:
+			$ \c <<another db name>>
+		list tables in db:
+			$ \d
+		describe a table:
+			$ \d <<table name>>
+		extra info:				 http://www.robbyonrails.com/articles/2008/01/22/installing-ruby-on-rails-and-postgresql-on-os-x-third-edition
+			http://www.eskimo.com/support/PostgreSQL/tutorial/
+	
+Scaffolding procedures
+	$ rails g scaffold Admin/role name:string
+	$ rake db:migrate
+	$ rails g bootstrap:themed admin/roles -f
+	Paper trail config:
+		add <<has_paper_trail>> to model file
