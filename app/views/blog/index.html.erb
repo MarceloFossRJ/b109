@@ -1,0 +1,28 @@
+<% @blogs.each do |post| %>
+
+	<h2><%= post.title %></h2>
+
+	<i class="icon-calendar">&nbsp;::&nbsp;<%= post.created_at.strftime("%A, %B %d, %Y") %></i>&nbsp;&nbsp;&nbsp;
+	<i class="icon-pencil">&nbsp;::&nbsp;<%= post.user.name %></i>&nbsp;&nbsp; &nbsp;
+
+	<i class="icon-tag">Tags&nbsp;::
+	<% a=[]%>
+	<% post.tags.each do |t|%>
+		<% a.push(t.tag_group.name) unless t.blank? %>		
+ 	<% end%>
+	<%= a.join(', ') %>
+	</i>
+	
+	<br />
+ 	<p>
+   		<%= post.preview.gsub(/\n/,'<p>').html_safe %>
+ 	</p>
+ <p>
+   <i class="icon-book"></i>&nbsp;<%=link_to "Continue reading...", blog_path(post) %>
+ </p>
+ <br />
+ 
+<%end%>
+<%= will_paginate @blogs %>
+
+<!-- footer --	>

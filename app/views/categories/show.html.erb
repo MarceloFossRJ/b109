@@ -1,7 +1,11 @@
 <%- model_class = Category -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
-</div>
+<h1>Show Category</h1>
+<ul class="breadcrumb">  
+	<li><a href="#">Home</a> <span class="divider">></span></li>  
+	<li><a href="#">Admin</a> <span class="divider">></span></li>  
+	<li><%= link_to "Categories", categories_path %> <span class="divider">></span>  </li>  
+	<li class="active">Show</li>  
+</ul>
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>

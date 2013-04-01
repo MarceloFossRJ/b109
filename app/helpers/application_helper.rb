@@ -9,4 +9,8 @@ module ApplicationHelper
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
   
+  def menu_type_combo
+    r = [['Root',1],['Children',2],['Blog',3],['Home',4],['Header',5],['Separator',6]]
+    return r
+  end
 end

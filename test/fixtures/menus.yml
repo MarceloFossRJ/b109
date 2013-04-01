@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  page: 
+  is_active: MyString
+  menu_id: 1
+  type: 1
+
+two:
+  name: MyString
+  page: 
+  is_active: MyString
+  menu_id: 1
+  type: 1

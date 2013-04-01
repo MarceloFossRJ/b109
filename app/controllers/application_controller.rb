@@ -12,6 +12,15 @@ class ApplicationController < ActionController::Base
         return false
     end
 
+    def admin_required
+      login_required
+      if current_user.is_admin
+          return true
+      else
+          return unauthorized
+          #return false
+      end
+    end
 
     def redirect_to_stored
       if return_to = session[:return_to]
@@ -22,9 +31,24 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    class UnauthorizedException < Exception; 
+    end
+
     private
       def current_user
         @current_user ||= User.find(session[:user_id]) if session[:user_id]
       end
       helper_method :current_user
+      
+      protected
+
+      def unauthorized
+        render status: 401, template: "/errors/unauthorized.html.erb"
+        false
+      end
+
+      def not_found
+        render status: 404, template: "/errors/not_found.html.erb"
+        false
+      end      
 end

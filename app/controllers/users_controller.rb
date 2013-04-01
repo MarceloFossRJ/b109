@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :login_required
+  before_filter :admin_required
   
   # GET /users
   # GET /users.json
@@ -113,6 +114,9 @@ class UsersController < ApplicationController
       end
     end
   end 
+
+  def access_denied
+  end
   
   private
 

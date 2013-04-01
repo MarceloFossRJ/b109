@@ -1,0 +1,10 @@
+<%- model_class = Page -%>
+<h1>New Page</h1>
+<ul class="breadcrumb">  
+	<li><a href="#">Home</a> <span class="divider">></span></li>  
+	<li><a href="#">Admin</a> <span class="divider">></span></li>  
+	<li><%= link_to "Pages", pages_path %> <span class="divider">></span>  </li>  
+	<li class="active">New</li>  
+</ul>
+
+<%= render :partial => 'form' %>

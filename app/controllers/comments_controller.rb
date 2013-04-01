@@ -42,14 +42,16 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
+    login_required
+    params[:comment][:user_id] = current_user.id
     @comment = @commentable.comments.new(params[:comment])
-
+    @blog = Post.find(params[:post_id])
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @commentable, notice: 'Comment was successfully created.' }
-        format.json { render json: @commentable, status: :created, location: @commentable }
+        format.html { redirect_to blog_path(@blog), notice: 'Comment was successfully created.' }
+        format.json { render json: blog_path(@blog), status: :created, location: @commentable }
       else
-        format.html { render action: "new" }
+        format.html {redirect_to blog_path(@blog) }
         format.json { render json: @commentable.errors, status: :unprocessable_entity }
       end
     end

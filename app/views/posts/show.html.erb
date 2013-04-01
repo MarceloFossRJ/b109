@@ -1,11 +1,17 @@
 <%- model_class = Post -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
-</div>
+<h1>Show Post</h1>
+<ul class="breadcrumb">  
+	<li><a href="#">Home</a> <span class="divider">></span></li>  
+	<li><a href="#">Admin</a> <span class="divider">></span></li>  
+	<li><%= link_to "Posts", posts_path %> <span class="divider">></span>  </li>  
+	<li class="active">Show</li>  
+</ul>
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
   <dd><%= @post.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:preview) %>:</strong></dt>
+  <dd><%= @post.preview %></dd>
   <dt><strong><%= model_class.human_attribute_name(:content) %>:</strong></dt>
   <dd><%= @post.content %></dd>
   <dt><strong><%= model_class.human_attribute_name(:is_published) %>:</strong></dt>
@@ -14,11 +20,6 @@
   <dd><%= @post.user_id %></dd>
 </dl>
 
-<%= render 'tags/tags'%>
-<%= render :partial => 'tags/form'%>
-
-<%= render :partial => 'comments/comments'%>
-<%= render :partial => 'comments/form'%>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

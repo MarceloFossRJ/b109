@@ -1,0 +1,10 @@
+<%- model_class = Menu -%>
+<h1>New Menu Item</h1>
+<ul class="breadcrumb">  
+	<li><a href="#">Home</a> <span class="divider">></span></li>  
+	<li><a href="#">Admin</a> <span class="divider">></span></li>  
+	<li><%= link_to "Menu", menus_path %> <span class="divider">></span>  </li>  
+	<li class="active">New</li>  
+</ul>
+
+<%= render :partial => 'form' %>

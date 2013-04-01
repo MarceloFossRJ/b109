@@ -1,6 +1,7 @@
 class TagsController < ApplicationController
   before_filter :load_taggable
-
+  before_filter :admin_required
+  
   # GET /tags
   # GET /tags.json
   def index

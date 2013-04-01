@@ -1,6 +1,7 @@
 class TagGroupsController < ApplicationController
   before_filter :login_required
-
+  before_filter :admin_required
+  
   # GET /tag_groups
   # GET /tag_groups.json
   def index

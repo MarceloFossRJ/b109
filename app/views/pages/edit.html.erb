@@ -1,0 +1,12 @@
+<%- model_class = Page -%>
+<h1>Edit Page</h1>
+<ul class="breadcrumb">  
+	<li><a href="#">Home</a> <span class="divider">></span></li>  
+	<li><a href="#">Admin</a> <span class="divider">></span></li>  
+	<li><%= link_to "Pages", pages_path %> <span class="divider">></span>  </li>  
+	<li class="active">Edit</li>  
+</ul>
+
+<%= render :partial => 'form' %>
+<%= render 'tags/tags'%>
+<%= render :partial => 'tags/form'%>

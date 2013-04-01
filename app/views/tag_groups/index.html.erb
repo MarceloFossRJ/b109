@@ -1,14 +1,26 @@
 <%- model_class = TagGroup -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
-</div>
+<h1>Tags</h1>
+<ul class="breadcrumb">  
+	<li><a href="#">Home</a> <span class="divider">></span></li>  
+	<li><a href="#">Admin</a> <span class="divider">></span></li>  
+	<li><%= link_to "Tags", tag_groups_path %> <span class="divider">></span>  </li>  
+	<li class="active">List</li>  
+</ul>
 
-<%= search_form_for @q, :builder => SimpleForm::FormBuilder, :html => { :class => 'form-horizontal' }  do |f| %>
-	<div class="field">
-		<%= f.input :name_cont, label: "Name contains" %>
-	</div>
-	<div class="actions"><%= f.button :submit, :class => 'btn-primary', :value => 'Search' %></div>
-<% end %>
+<!-- Tab menu-->
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#">List</a></li>
+  <li><%= link_to t('.new', :default => t("helpers.links.new")),new_tag_group_path %></li>
+  <li><a href="#">Versions</a></li>	
+  
+  <li class="pull-right">
+		<%= search_form_for @q, :html => { :class => 'navbar-search pull-right' }   do |f| %>		
+				<%= f.text_field :name_cont, :class => 'search-query', :placeholder => "Quick Search" %>
+		<% end %>
+  </li>
+  <li class="pull-right"><a href="#AdvancedSearch" data-toggle="modal">Advanced Search</a></li>
+</ul>
+
 
 <table class="table table-striped">
   <thead>
@@ -39,6 +51,3 @@
 
 <%= will_paginate @tag_groups %>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_tag_group_path,
-            :class => 'btn btn-primary' %>

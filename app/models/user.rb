@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_paper_trail
   
   has_many :posts
+  has_many :comments
+  
   
   attr_accessor :password, :password_confirmation, :updating_password
   
@@ -57,5 +59,9 @@ class User < ActiveRecord::Base
     return newpass
   end
   
+  #cannot delete root user
+  #block not active user to login
+  #create feature to reset user password
+  #create user registration form
   
 end

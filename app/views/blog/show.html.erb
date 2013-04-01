@@ -1,0 +1,43 @@
+<% post = @blog %>
+<h2><%= post.title %></h2>
+
+<i class="icon-calendar">&nbsp;::&nbsp;<%= post.created_at.strftime("%A, %B %d, %Y") %></i>&nbsp;&nbsp;&nbsp;
+<i class="icon-pencil">&nbsp;::&nbsp;<%= post.user.name %></i>&nbsp;&nbsp; &nbsp;
+<i class="icon-tag">Tags&nbsp;::
+<% a=[]%>
+<% post.tags.each do |t|%>
+	<% a.push(t.tag_group.name) unless t.blank? %>		
+<% end%>
+<%= a.join(', ') %>
+</i>
+
+<br />
+	<%= post.content.html_safe %>
+<br />
+
+<h3> Comments </h3>
+<div id="comment">
+	<% @comments.each do |comment| %>
+ 		<i class="icon-comment">&nbsp;::&nbsp;<%= comment.user.name %></i>&nbsp;&nbsp;&nbsp;
+		<i class="icon-calendar">&nbsp;::&nbsp;<%= comment.created_at.strftime("%A, %B %d, %Y") %></i>&nbsp;&nbsp;&nbsp;
+		<div class="text">
+			<%= comment.comment.gsub(/\n/, '<br />').html_safe %>
+		</div>
+	<% end %>
+</div>
+
+<h4>Add Comment</h4>
+<% if current_user %>
+	<%= form_for [@commentable, @comment] do |f| %>
+	<table class="table table-striped">
+  		<tbody>
+  			<tr>
+    			<td><%= f.text_area :comment, :size => '40x5' %></td>
+			</tr>
+  		</tbody>
+	</table>
+    <%= f.button :submit, :class => 'btn-primary' %>
+	<% end %>
+<% else %>
+	Please login to comment
+<% end %>

@@ -1,44 +1,47 @@
 <%- model_class = User -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
-</div>
 
-
-<div class="accordion" id="accordion2">
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-		Advanced Search			
-	  </a>
-    </div>
-    <div id="collapseOne" class="accordion-body collapse">
-      <div class="accordion-inner">
-		<%= search_form_for @q, :html => { :class => 'form-horizontal' }  do |f| %>
-			<%= f.condition_fields do |c| %>
-				<%= render "condition_fields", f: c%>
-			<% end %>
-			</br>
-			<%= link_to_add_fields "Add Conditions", f, :condition %>
-			<%= f.button :submit, :class => 'btn-primary', :value => 'Search' %>
-		<% end %>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
+<h1>Users</h1>
+<ul class="breadcrumb">  
+	<li><a href="#">Home</a> <span class="divider">></span></li>  
+	<li><a href="#">Admin</a> <span class="divider">></span></li>  
+	<li><%= link_to "Users", users_path %> <span class="divider">></span>  </li>  
+	<li class="active">List</li>  
+</ul>  
+	
+<!-- Tab menu-->
 <ul class="nav nav-tabs">
   <li class="active"><a href="#">List</a></li>
   <li><%= link_to t('.new', :default => t("helpers.links.new")),new_user_path %></li>
   <li><a href="#">Versions</a></li>	
-  <li><a href="#">Advanced Search</a></li>
+  
   <li class="pull-right">
 		<%= search_form_for @q, :html => { :class => 'navbar-search pull-right' }   do |f| %>		
-				<%= f.text_field :name_cont, :class => 'search-query', :placeholder => "Search User Name" %>
+				<%= f.text_field :name_or_login_or_email_cont, :class => 'search-query', :placeholder => "Quick Search" %>
 		<% end %>
   </li>
+  <li class="pull-right"><a href="#AdvancedSearch" data-toggle="modal">Advanced Search</a></li>
 </ul>
+
+<!-- Modal Advanced Search -->
+<div id="AdvancedSearch" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Advanced Search</h3>
+  </div>
+
+  <div class="modal-body">   
+	  <%= search_form_for @q, :builder => SimpleForm::FormBuilder, :html => { :class => 'form-horizontal' }  do |f| %> 	
+		<%= f.input :name_cont, label: 'Name contains' %>
+		<%= f.input :login_cont, label: 'Login contains' %>
+		<%= f.input :is_admin_cont, label: 'Administrator', as: :check_boxes %>
+		<%= f.input :is_active_cont, label: 'Active', as: :check_boxes %>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	<%= f.button :submit, :class => 'btn btn-primary', :value => 'Search' %>
+  </div>
+  <% end %>
+</div>
 
 
 <table class="table table-striped">

@@ -3,10 +3,12 @@ class Comment < ActiveRecord::Base
   
   attr_accessible :comment, :post_id, :user_id
   
-  belongs_to :posts
-  belongs_to :users
+  belongs_to :post
+  belongs_to :user
   
   validates_presence_of :user_id
   validates_presence_of :post_id
   validates_presence_of :comment
+  
+
 end

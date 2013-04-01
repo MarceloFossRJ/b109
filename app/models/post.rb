@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   has_paper_trail
-  attr_accessible  :title, :content, :is_published, :user_id, :category_id
+  attr_accessible  :title, :content, :is_published, :user_id, :category_id, :preview
   
   belongs_to :user
   belongs_to :category

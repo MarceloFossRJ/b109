@@ -1,6 +1,8 @@
 
 <%= simple_form_for @post, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :title %>
+preview
+  <%= f.input :preview, input_html: { :class => "tinymce", :rows => '3', :cols => '40' } %>
   <%= f.input :content, input_html: { :class => "tinymce", :rows => '5', :cols => '40' } %>
 
   <%= f.association :category %>

@@ -1,10 +1,34 @@
 B109::Application.routes.draw do
+
+#  get "errors/unauthorized"
+#  get "errors/not_found"
+#  get "errors/error"
+  match "/401", to: "errors#unauthorized"
+  match "/404", to: "errors#not_found"
+  match "/404", to: "errors#error"
+
+  
+  get "home/index"
+
+  get "blog/index"
+
+#  get "blog/show"
+  match "blog/:id" => "blog#show", :via => :get
+#  resources :blog
+
+  resources :menus
+
+
+  resources :pages do
+    resources :tags
+  end
+
   #resources :comments
   resources :tag_groups
 
   resources :posts do
     resources :tags
-    resources :comments
+#    resources :comments
   end
 
   resources :categories
@@ -14,6 +38,7 @@ B109::Application.routes.draw do
     member do
       get 'change_password'
       put 'update_password'
+      get 'access_denied'
     end
   end
   
