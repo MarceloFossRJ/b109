@@ -22,13 +22,13 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     
-    @taggable = @post
-    @tags = @taggable.tags
-    @tag = Tag.new
+#    @taggable = @post
+#    @tags = @taggable.tags
+#    @tag = Tag.new
     
-    @commentable = @post
-    @comments = @commentable.comments
-    @comment = Comment.new
+#    @commentable = @post
+#    @comments = @commentable.comments
+#    @comment = Comment.new
     
     respond_to do |format|
       format.html # show.html.erb
@@ -52,13 +52,13 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
     
-    @taggable = @post
-    @tags = @taggable.tags
-    @tag = Tag.new
+#    @taggable = @post
+#    @tags = @taggable.tags
+#    @tag = Tag.new
     
-    @commentable = @post
-    @comments = @commentable.comments
-    @comment = Comment.new
+#    @commentable = @post
+#    @comments = @commentable.comments
+#    @comment = Comment.new
   end
 
   # POST /posts

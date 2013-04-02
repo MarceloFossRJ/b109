@@ -27,3 +27,20 @@ Scaffolding procedures
 	$ rails g bootstrap:themed admin/roles -f
 	Paper trail config:
 		add <<has_paper_trail>> to model file
+		
+Git recipe
+1. Create a repository in local machine
+	goto project directory
+	$git init
+	create a readme file
+	$touch README
+	Add files to rep
+	$git add .
+	Commit all changes to local repo
+	$git commit -m 'first commit'
+2. Push changes to GitHub
+	Create a remote named b109 pointing  at github repo
+	$git remote add b109 https://github.com/marcelofossrj/b109.git
+	Sends the commits in the master branch at github
+	$git push b109 master
+$
