@@ -17,7 +17,7 @@
 
 <h3> Comments </h3>
 <div id="comment">
-	<% @comments.each do |comment| %>
+	<% post.comments.each do |comment| %>
  		<i class="icon-comment">&nbsp;::&nbsp;<%= comment.user.name %></i>&nbsp;&nbsp;&nbsp;
 		<i class="icon-calendar">&nbsp;::&nbsp;<%= comment.created_at.strftime("%A, %B %d, %Y") %></i>&nbsp;&nbsp;&nbsp;
 		<div class="text">
@@ -26,9 +26,9 @@
 	<% end %>
 </div>
 
-<h4>Add Comment</h4>
+<h3>Add Comment</h3>
 <% if current_user %>
-	<%= form_for [@commentable, @comment] do |f| %>
+	<%= form_for [@blog, @comment] do |f| %>
 	<table class="table table-striped">
   		<tbody>
   			<tr>

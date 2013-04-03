@@ -6,14 +6,14 @@ B109::Application.routes.draw do
   match "/401", to: "errors#unauthorized"
   match "/404", to: "errors#not_found"
   match "/404", to: "errors#error"
-
+  match "/500", to: "errors#error"
   
   get "home/index"
 
-  get "blog/index"
+  get "blog/index", :as => :blogs
 
 #  get "blog/show"
-  match "blog/:id" => "blog#show", :via => :get
+  match "blog/:id" => "blog#show", :via => :get, :as => :blog
 #  resources :blog
 
   resources :menus
@@ -28,7 +28,7 @@ B109::Application.routes.draw do
 
   resources :posts do
     resources :tags
-#    resources :comments
+    resources :comments
   end
 
   resources :categories

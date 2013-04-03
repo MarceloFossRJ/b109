@@ -21,4 +21,6 @@ class Post < ActiveRecord::Base
     tags.build
     self
   end  
+  
+  
 end

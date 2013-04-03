@@ -33,8 +33,11 @@
 	  <%= search_form_for @q, :builder => SimpleForm::FormBuilder, :html => { :class => 'form-horizontal' }  do |f| %> 	
 		<%= f.input :name_cont, label: 'Name contains' %>
 		<%= f.input :login_cont, label: 'Login contains' %>
-		<%= f.input :is_admin_cont, label: 'Administrator', as: :check_boxes %>
-		<%= f.input :is_active_cont, label: 'Active', as: :check_boxes %>
+		<%= f.input :email_cont, label: 'E-Mail contains' %>
+		<%= f.input :is_admin_eq, label: 'Administrator', as: :radio_buttons %>
+		<%= f.input :is_active_eq, label: 'Active', as: :radio_buttons %>
+
+
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>

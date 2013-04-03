@@ -36,6 +36,7 @@
 		<%= f.input :created_at_lteq, label: 'Created before', :as => :date_picker %>
 		<%= f.input :created_at_gteq, label: 'Created after', :as => :date_picker %>
 		<%= f.input :user_id_eq, label: 'Created by', collection: User.where("is_admin=?", true).order('name')%>
+		<%= f.input :category_id_eq, label: 'Category', collection: Category.all(order: 'name')%>
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>

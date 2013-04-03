@@ -10,8 +10,7 @@ class BlogController < ApplicationController
   def show
     @blog = Post.find(params[:id])
         
-    @commentable = @blog
-    @comments = @commentable.comments
+#    @comments = @commentable.comments
     @comment = Comment.new
 
     @taggable = @blog
