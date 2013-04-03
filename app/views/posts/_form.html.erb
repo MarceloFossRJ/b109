@@ -1,7 +1,5 @@
-
 <%= simple_form_for @post.with_blank_tag, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :title %>
-
   <%= f.input :preview, input_html: { :class => "tinymce", :rows => '3', :cols => '40' } %>
   <%= f.input :content, input_html: { :class => "tinymce", :rows => '5', :cols => '40' } %>
 
@@ -11,35 +9,7 @@
 	
   <%= tinymce %>
 
-  <table class="table table-condensed table-hover">
-	<thead>
-      <tr>
-        <th>Tags</th>
-		<th>Delete</th>
-	  </tr>
-	</thead>
-	<tbody>
-  		<%= f.fields_for(:tags) do |tags_form| %>
-			<tr>
-      		<td>
-				<% if tags_form.object.new_record? %>
-					
-					<%= tags_form.collection_select(:tag_group_id, TagGroup.all, :id, :name, options={:prompt => ':: Select Tag ::'}) %>
-					
-				<% else %>
-					<%= tags_form.collection_select(:tag_group_id, TagGroup.all, :id, :name, {}, {:disabled => "disabled"} ) %>
-
-				<% end %>
-			</td>
-      		<td>
-				<%=  unless tags_form.object.new_record?
-             		tags_form.check_box('_destroy') #+ tags_form.label('_destroy','Remove')
-           		end %>
-			</td>
-			</tr>
-  		<% end %>	  
-	</tbody>
-</table>	
+  <%= render :partial => 'tags/tags', :locals => {:f => f} %>
 
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>

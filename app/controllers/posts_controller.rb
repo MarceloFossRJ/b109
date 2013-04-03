@@ -40,7 +40,7 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @post = Post.new
-    @post.tags.build
+  #  @post.tags.build
     
     respond_to do |format|
       format.html # new.html.erb

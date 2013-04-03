@@ -11,7 +11,7 @@ class Post < ActiveRecord::Base
   has_many :tags, :as => :taggable, :dependent => :destroy
   accepts_nested_attributes_for :tags, reject_if:lambda { |attrs| attrs.all? { |key, value| value.blank? } }, :allow_destroy => true
   
-  attr_accessible :content, :is_published, :title, :user_id
+ # attr_accessible :content, :is_published, :title, :user_id
 
   validates_presence_of :title, :content, :user_id, :preview
   validates_length_of :title, :within => 3..80

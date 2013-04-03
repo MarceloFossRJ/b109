@@ -43,9 +43,9 @@ class PagesController < ApplicationController
   def edit
     @page = Page.find(params[:id])
     
-    @taggable = @page
-    @tags = @taggable.tags
-    @tag = Tag.new
+#    @taggable = @page
+#    @tags = @taggable.tags
+#    @tag = Tag.new
   end
 
   # POST /pages
@@ -55,7 +55,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to @page, notice: 'Page was successfully created.' }
+        format.html { redirect_to pages_path, notice: 'Page was successfully created.' }
         format.json { render json: @page, status: :created, location: @page }
       else
         format.html { render action: "new" }
@@ -71,7 +71,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.update_attributes(params[:page])
-        format.html { redirect_to @page, notice: 'Page was successfully updated.' }
+        format.html { redirect_to pages_path, notice: 'Page was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -95,10 +95,10 @@ class PagesController < ApplicationController
   private
 
     def sort_column
-      Page.column_names.include?(params[:sort]) ? params[:sort] : "title"
+      Page.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
     end
 
     def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end  
 end
