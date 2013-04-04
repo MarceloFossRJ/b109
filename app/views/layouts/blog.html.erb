@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>B109</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= tinymce_assets %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<%= render :partial => 'layouts/menu' %>
+	<div class="container">
+		<div class="row">
+			<div class="span7 offset1">
+      		<% flash.each do |name, msg| %>
+	    		<div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+		  			<a class="close" data-dismiss="alert">x</a>
+	      			<%= msg  %>
+	    		</div>
+	  		<% end %>
+		
+	  		<%= yield %>
+			</div>
+			<div class="span3">
+				<%= render :partial => 'layouts/blog_filters' %>
+			</div>
+			<div class="span1">
+			</div>
+		</div>
+	</div>	
+	<!-- footer -->
+</body>
+</html>
