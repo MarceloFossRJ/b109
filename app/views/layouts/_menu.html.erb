@@ -29,7 +29,7 @@
 				</li>
 			<% else %>
 				<% if m.menu_type == 3 %>
-					<li> <%= link_to m.name, blog_index_path %></a></li>
+					<li> <%= link_to m.name, blogs_path %></a></li>
 				<% elsif m.menu_type == 4 %>
 					<li> <%= link_to m.name, home_index_path(:p => m.page_id) %></a></li>
 				<% else %>
@@ -59,7 +59,7 @@
 					<li><%= link_to "Tags", tag_groups_path %></li>
           			<li><%= link_to "Categories", categories_path %></li>
 					<li><a href="#">Manage Comments</li>
-					<li><a href="#">Media Library</li>
+					<li><%= link_to "Media Library", images_path %></li>
 					<li><a href="#">Parameters</li>
 					<li><a href="#">Manage Templates</li>		
 					<li class="divider"></li>

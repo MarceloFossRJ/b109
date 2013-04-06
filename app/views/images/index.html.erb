@@ -1,0 +1,46 @@
+<%- model_class = Image -%>
+
+<h1>Media Library</h1>
+<ul class="breadcrumb">  
+	<li><a href="#">Home</a> <span class="divider">></span></li>  
+	<li><a href="#">Admin</a> <span class="divider">></span></li>  
+	<li><%= link_to "Media", images_path %> <span class="divider">></span>  </li>  
+	<li class="active">List</li>  
+</ul>
+
+<!-- Tab menu-->
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#">List</a></li>
+  <li><%= link_to t('.new', :default => t("helpers.links.new")),new_image_path %></li>
+  <li class="pull-right">
+		<%= search_form_for @q, :html => { :class => 'navbar-search pull-right' }   do |f| %>		
+				<%= f.text_field :name_cont, :class => 'search-query', :placeholder => "Quick Search" %>
+		<% end %>
+  </li>
+</ul>
+
+  
+
+<ul class="thumbnails">
+  <% @images.each do |image| %>
+    <li class="span2">
+      <a href="#" class="thumbnail">
+        <%= image_tag image.media_url(:thumb).to_s, :class => "img-rounded" %>
+      </a>
+	  <div><%= image.name %></div>
+	  <div class="actions">
+	      <%= link_to t('.edit', :default => t("helpers.links.edit")),
+	                  edit_image_path(image), :class => 'btn btn-mini' %>
+	      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+	                  image_path(image),
+	                  :method => :delete,
+	                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+	                  :class => 'btn btn-mini btn-danger' %>
+	  </div>
+    </li>
+  <% end %>
+</ul>
+
+
+  
+<%= will_paginate @images %>

@@ -1,5 +1,7 @@
 B109::Application.routes.draw do
 
+  resources :images
+
 #  get "errors/unauthorized"
 #  get "errors/not_found"
 #  get "errors/error"

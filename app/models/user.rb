@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   
   has_many :posts
   has_many :comments
-  
+  has_many :images
   
   attr_accessor :password, :password_confirmation, :updating_password
   
