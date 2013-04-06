@@ -1,12 +1,21 @@
+<script type="text/javascript">
+	$(document).ready(
+		function()
+		{
+			$('#redactor_content').redactor();
+		}
+	);
+</script>
+
 <%= simple_form_for @page.with_blank_tag, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :title %>
-  <%= f.input :content, input_html: { :class => "tinymce", :rows => '5', :cols => '40' }  %>
+  <%= f.input :content, input_html: {:id => 'redactor_content', :rows => '9', :cols => '100' }  %>
 
   <%= f.association :category%>
   <%= f.input :is_published %>
   <%= f.association :user %>
 
-  <%= tinymce %>
+
 
   <%= render :partial => 'tags/tags', :locals => {:f => f} %>
 

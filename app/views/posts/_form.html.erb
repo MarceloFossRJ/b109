@@ -1,7 +1,17 @@
+<script type="text/javascript">
+	$(document).ready(
+		function()
+		{
+			$('#redactor_content1').redactor();
+			$('#redactor_content2').redactor();
+		}
+	);
+</script>
+
 <%= simple_form_for @post.with_blank_tag, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :title %>
-  <%= f.input :preview, input_html: { :class => "tinymce", :rows => '3', :cols => '40' } %>
-  <%= f.input :content, input_html: { :class => "tinymce", :rows => '5', :cols => '40' } %>
+  <%= f.input :preview, input_html: {:id => 'redactor_content1', :rows => '9', :cols => '100' }  %>
+  <%= f.input :content, input_html: {:id => 'redactor_content2', :rows => '9', :cols => '100' }  %>
 
   <%= f.association :category %>
   <%= f.input :is_published %>
