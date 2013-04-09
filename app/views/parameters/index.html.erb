@@ -1,0 +1,59 @@
+<%- model_class = Parameter -%>
+<h1>Parameters</h1>
+<ul class="breadcrumb">  
+	<li><a href="#">Home</a> <span class="divider">></span></li>  
+	<li><a href="#">Admin</a> <span class="divider">></span></li>  
+	<li><%= link_to "Parameters", parameters_path %> <span class="divider">></span>  </li>  
+	<li class="active">List</li>  
+</ul>
+
+<!-- Tab menu-->
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#">List</a></li>
+  <li><%= link_to t('.new', :default => t("helpers.links.new")),new_parameter_path %></li>
+  <li><a href="#">Versions</a></li>	
+  
+  <li class="pull-right">
+		<%= search_form_for @q, :html => { :class => 'navbar-search pull-right' }   do |f| %>		
+				<%= f.text_field :name_cont, :class => 'search-query', :placeholder => "Quick Search" %>
+		<% end %>
+  </li>
+</ul>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:value) %></th>
+      <th><%= model_class.human_attribute_name(:type) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @parameters.each do |parameter| %>
+      <tr>
+        <td><%= parameter.name %></td>
+        <td><%= parameter.value %></td>
+        <td><%= parameter.parameter_type %></td>
+        <td><%= parameter.description %></td>
+        <td><%= parameter.created_at.strftime("%d/%m/%Y") %></td>
+        <td>
+		  <%= link_to t('.show', :default => t("helpers.links.show")),
+		                      parameter_path(parameter), :class => 'btn btn-mini' %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_parameter_path(parameter), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      parameter_path(parameter),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @parameters %>

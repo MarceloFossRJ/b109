@@ -1,4 +1,6 @@
 class Menu < ActiveRecord::Base
+  has_paper_trail
+  
   belongs_to :page
   
   has_many :children, :class_name => "Menu", :foreign_key => "menu_id"

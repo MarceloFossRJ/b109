@@ -1,0 +1,80 @@
+
+<h1>Comments Management</h1>
+<ul class="breadcrumb">  
+	<li><a href="#">Home</a> <span class="divider">></span></li>  
+	<li><a href="#">Admin</a> <span class="divider">></span></li>  
+	<li><%= link_to "Comments Management", manage_comments_path %> <span class="divider">></span>  </li>  
+	<li class="active">List</li>  
+</ul>
+
+<!-- Tab menu-->
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#">List</a></li>
+  
+  <li class="pull-right">
+		<%= search_form_for @q,:url => manage_comments_path , :html => { :class => 'navbar-search pull-right' }   do |f| %>		
+				<%= f.text_field :comment_cont, :class => 'search-query', :placeholder => "Quick Search" %>
+		<% end %>
+  </li>
+  <li class="pull-right"><a href="#AdvancedSearch" data-toggle="modal">Advanced Search</a></li>
+</ul>
+
+<!-- Modal Advanced Search -->
+<div id="AdvancedSearch" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Advanced Search</h3>
+  </div>
+
+  <div class="modal-body">   
+	  <%= search_form_for @q,:url => manage_comments_path , :builder => SimpleForm::FormBuilder, :html => { :class => 'form-horizontal' }  do |f| %> 	
+		<%= f.input :comment_cont, label: 'Comment contains' %>
+		<%= f.input :is_published_eq, label: 'Comment is published', as: :radio_buttons %>
+		<%= f.input :is_validated_eq, label: 'Comment is validated', as: :radio_buttons %>
+		<%= f.input :created_at_lteq, label: 'Created before', :as => :date_picker %>
+		<%= f.input :created_at_gteq, label: 'Created after', :as => :date_picker %>
+		<%= f.input :user_id_eq, label: 'Created by', collection: User.all %>
+		<%= f.input :post_id_eq, label: 'Post', collection: Post.all(order: 'title')%>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+	<%= f.button :submit, :class => 'btn btn-primary', :value => 'Search' %>
+  </div>
+  <% end %>
+</div>
+
+
+<table class="table table-striped table-condensed table-hover">
+  <thead>
+    <tr>
+      <th><%= sort_link @q, :comment, "Comment" %></th>
+      <th><%= sort_link @q, :is_published, "Published?" %></th>
+      <th><%= sort_link @q, :is_validated, "Validated?" %></th>
+      <th><%= sort_link @q, :user_id, "User" %></th>
+      <th><%= sort_link @q, :post_id, "Post" %></th>
+	  <th><%= sort_link @q, :created_at, "Created at" %></th>
+	  <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.comment.to_str[0..70] unless comment.comment.blank? %></td>
+        <td><%= comment.is_published %></td>
+		<td><%= comment.is_validated %></td>
+        <td><%= comment.user.name %></td>
+		<td><%= comment.post.title unless comment.post_id.blank?  %></td>
+		<td><%= comment.created_at.strftime("%d/%m/%Y") %></td>
+        <td>
+			<%= form_tag manage_comment_path(comment), :method => 'put' do%>
+				<%= hidden_field_tag('comment[is_published]', "true") %>
+				<%= hidden_field_tag('comment[is_validated]', "true") %>
+				<%= button_tag 'Publish', :onclick => "comment_is_published.value=true;submit();", :class => 'btn btn-mini'%>
+				<%= button_tag 'UnPublish', :onclick => "comment_is_published.value=false;submit();", :class => 'btn btn-mini'%>
+		  	<% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @comments %>

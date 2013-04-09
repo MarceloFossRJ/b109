@@ -64,11 +64,12 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    params[:post][:user_id] = current_user.id
     @post = Post.new(params[:post])
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to posts_path, notice: 'Post was successfully created.' }
         format.json { render json: @post, status: :created, location: @post }
       else
         format.html { render action: "new" }
@@ -81,7 +82,8 @@ class PostsController < ApplicationController
   # PUT /posts/1.json
   def update
     @post = Post.find(params[:id])
-
+    params[:post][:user_id] = current_user.id
+    
     respond_to do |format|
       if @post.update_attributes(params[:post])
         format.html { redirect_to posts_path, notice: 'Post was successfully updated.' }

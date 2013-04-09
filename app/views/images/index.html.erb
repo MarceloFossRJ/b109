@@ -24,7 +24,7 @@
 <ul class="thumbnails">
   <% @images.each do |image| %>
     <li class="span2">
-      <a href="#" class="thumbnail">
+      <a href="<%=image.media_url%>" class="thumbnail" target="_blank">
         <%= image_tag image.media_url(:thumb).to_s, :class => "img-rounded" %>
       </a>
 	  <div><%= image.name %></div>

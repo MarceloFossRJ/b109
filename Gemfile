@@ -33,13 +33,11 @@ gem 'tinymce-rails'
 #gem 'redactor-rails'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'omniauth-github'
 
 #Installing bcrypt-ruby (3.0.1) with native extensions
 #Installing orm_adapter (0.4.0)
 #Installing warden (1.2.1)
-#Installing devise (2.2.3)
-#Installing redactor-rails (0.3.3)
-#Installing carrierwave (0.8.0)
 #Installing subexec (0.2.2)
 #Installing mini_magick (3.5.0)
 

@@ -15,9 +15,6 @@
 
   <%= f.association :category %>
   <%= f.input :is_published %>
-  <%= f.association :user %>
-	
-  <%= tinymce %>
 
   <%= render :partial => 'tags/tags', :locals => {:f => f} %>
 

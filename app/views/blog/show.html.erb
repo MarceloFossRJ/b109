@@ -18,11 +18,13 @@
 <h3> Comments </h3>
 <div id="comment">
 	<% post.comments.each do |comment| %>
- 		<i class="icon-comment">&nbsp;::&nbsp;<%= comment.user.name %></i>&nbsp;&nbsp;&nbsp;
-		<i class="icon-calendar">&nbsp;::&nbsp;<%= comment.created_at.strftime("%A, %B %d, %Y") %></i>&nbsp;&nbsp;&nbsp;
-		<div class="text">
-			<%= comment.comment.gsub(/\n/, '<br />').html_safe %>
-		</div>
+		<% if comment.is_published %>
+ 			<i class="icon-comment">&nbsp;::&nbsp;<%= comment.user.name %></i>&nbsp;&nbsp;&nbsp;
+			<i class="icon-calendar">&nbsp;::&nbsp;<%= comment.created_at.strftime("%A, %B %d, %Y") %></i>&nbsp;&nbsp;&nbsp;
+			<div class="text">
+				<%= comment.comment.gsub(/\n/, '<br />').html_safe %>
+			</div>
+		<% end %>
 	<% end %>
 </div>
 

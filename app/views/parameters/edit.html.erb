@@ -1,0 +1,10 @@
+<%- model_class = Parameter -%>
+<h1>Edit Parameter</h1>
+<ul class="breadcrumb">  
+	<li><a href="#">Home</a> <span class="divider">></span></li>  
+	<li><a href="#">Admin</a> <span class="divider">></span></li>  
+	<li><%= link_to "Parameters", parameters_path %> <span class="divider">></span>  </li>  
+	<li class="active">Edit</li>  
+</ul>
+
+<%= render :partial => 'form' %>

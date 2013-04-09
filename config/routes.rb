@@ -1,5 +1,7 @@
 B109::Application.routes.draw do
 
+  resources :manage_comments
+  resources :parameters
   resources :images
 
 #  get "errors/unauthorized"
@@ -7,7 +9,6 @@ B109::Application.routes.draw do
 #  get "errors/error"
   match "/401", to: "errors#unauthorized"
   match "/404", to: "errors#not_found"
-  match "/404", to: "errors#error"
   match "/500", to: "errors#error"
   
   get "home/index"
@@ -19,7 +20,6 @@ B109::Application.routes.draw do
 #  resources :blog
 
   resources :menus
-
 
   resources :pages do
     resources :tags

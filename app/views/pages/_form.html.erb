@@ -13,9 +13,6 @@
 
   <%= f.association :category%>
   <%= f.input :is_published %>
-  <%= f.association :user %>
-
-
 
   <%= render :partial => 'tags/tags', :locals => {:f => f} %>
 

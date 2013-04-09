@@ -1,7 +1,7 @@
 class Comment < ActiveRecord::Base
   has_paper_trail
   
-  attr_accessible :comment, :post_id, :user_id
+  attr_accessible :comment, :post_id, :user_id, :is_published, :is_validated
   
   belongs_to :post
   belongs_to :user

@@ -14,7 +14,12 @@ class BlogController < ApplicationController
 
   def show
     @blog = Post.find(params[:id])
-        
+
+    @q = Post.search(params[:q])
+    #@blogs = Post.where("is_published = ?", true).order("created_at").reverse_order.paginate(:per_page => 3, :page => params[:page])
+    @blogs = @q.result(:distinct => true).order(sort_column + ' ' + sort_direction).paginate(:per_page => 3, :page => params[:page])
+    @q.build_condition
+            
 #    @comments = @commentable.comments
     @comment = Comment.new
 

@@ -51,6 +51,7 @@ class PagesController < ApplicationController
   # POST /pages
   # POST /pages.json
   def create
+    params[:page][:user_id] = current_user.id
     @page = Page.new(params[:page])
 
     respond_to do |format|
@@ -68,7 +69,8 @@ class PagesController < ApplicationController
   # PUT /pages/1.json
   def update
     @page = Page.find(params[:id])
-
+    params[:page][:user_id] = current_user.id
+    
     respond_to do |format|
       if @page.update_attributes(params[:page])
         format.html { redirect_to pages_path, notice: 'Page was successfully updated.' }

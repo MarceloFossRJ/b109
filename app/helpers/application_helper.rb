@@ -13,4 +13,10 @@ module ApplicationHelper
     r = [['Root',1],['Children',2],['Blog',3],['Home',4],['Header',5],['Separator',6]]
     return r
   end
+
+  def parameter_type_combo
+    r = [['String',1],['Integer',2],['Number',3],['Date',4],['DateTime',5],['Currency',6]]
+    return r
+  end
+  
 end
