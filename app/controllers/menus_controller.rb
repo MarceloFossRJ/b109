@@ -6,7 +6,7 @@ class MenusController < ApplicationController
   def index
    # @menus = Menu.all
     @q = Menu.search(params[:q])
-    @menus = @q.result(:distinct => true).order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page])
+    @menus = @q.result(:distinct => true).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
     @q.build_condition
 
     respond_to do |format|

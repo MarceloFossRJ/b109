@@ -44,7 +44,11 @@ class CommentsController < ApplicationController
   def create
     login_required
     params[:comment][:user_id] = current_user.id
-    params[:comment][:is_published] = true
+    if Parameter.comments_published_automatically == 'true'
+      params[:comment][:is_published] = true
+    else
+      params[:comment][:is_published] = false
+    end
     params[:comment][:is_validated] = false
     @comment = @commentable.comments.new(params[:comment])
     @blog = Post.find(params[:post_id])

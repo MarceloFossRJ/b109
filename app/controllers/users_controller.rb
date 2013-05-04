@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
-  before_filter :login_required
-  before_filter :admin_required
+  before_filter :login_required, :except => [:signup, :create_user]
+  before_filter :admin_required, :except => [:signup, :create_user]
   
   # GET /users
   # GET /users.json
   def index
     @q = User.search(params[:q])
-    @users = @q.result(:distinct => true).order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page])
+    @users = @q.result(:distinct => true).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
 #    @users = User.order(sort_column + ' ' + sort_direction).paginate(:per_page => 10, :page => params[:page])
     @q.build_condition
     
@@ -116,6 +116,33 @@ class UsersController < ApplicationController
   end 
 
   def access_denied
+  end
+  
+  def signup
+    @user = User.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @user }
+    end  
+  end
+  
+  def create_user
+    params[:user][:is_admin] = false
+    params[:user][:is_active] = true
+    params[:user][:login] = params[:user][:email]
+
+    @user = User.new(params[:user])
+
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to blogs_url, notice: 'User was successfully created.' }
+        format.json { render json: @user, status: :created, location: @user }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end    
   end
   
   private

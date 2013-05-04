@@ -7,7 +7,7 @@ class TagGroupsController < ApplicationController
   def index
 
     @q = TagGroup.search(params[:q])
-    @tag_groups = @q.result(:distinct => true).order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page])
+    @tag_groups = @q.result(:distinct => true).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
     @q.build_condition
 
     

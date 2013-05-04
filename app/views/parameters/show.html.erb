@@ -8,12 +8,12 @@
 </ul>
 
 <dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:group) %>:</strong></dt>
+  <dd><%= @parameter.group %></dd>	
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @parameter.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:value) %>:</strong></dt>
   <dd><%= @parameter.value %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:type) %>:</strong></dt>
-  <dd><%= @parameter.parameter_type %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @parameter.description %></dd>
 </dl>

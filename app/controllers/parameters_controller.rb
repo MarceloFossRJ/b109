@@ -7,7 +7,7 @@ class ParametersController < ApplicationController
   def index
     #@parameters = Parameter.all
     @q = Parameter.search(params[:q])
-    @parameters = @q.result(:distinct => true).order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page])
+    @parameters = @q.result(:distinct => true).order(sort_column + ' ' + sort_direction).paginate( :page => params[:page])
     @q.build_condition
     
     respond_to do |format|
@@ -29,14 +29,14 @@ class ParametersController < ApplicationController
 
   # GET /parameters/new
   # GET /parameters/new.json
-  def new
-    @parameter = Parameter.new
+  #def new
+  #  @parameter = Parameter.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @parameter }
-    end
-  end
+  #  respond_to do |format|
+  #    format.html # new.html.erb
+  #    format.json { render json: @parameter }
+  #  end
+  #end
 
   # GET /parameters/1/edit
   def edit
@@ -45,19 +45,19 @@ class ParametersController < ApplicationController
 
   # POST /parameters
   # POST /parameters.json
-  def create
-    @parameter = Parameter.new(params[:parameter])
+  #def create
+  #  @parameter = Parameter.new(params[:parameter])
 
-    respond_to do |format|
-      if @parameter.save
-        format.html { redirect_to parameters_path, notice: 'Parameter was successfully created.' }
-        format.json { render json: @parameter, status: :created, location: @parameter }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @parameter.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #  respond_to do |format|
+  #    if @parameter.save
+  #      format.html { redirect_to parameters_path, notice: 'Parameter was successfully created.' }
+  #      format.json { render json: @parameter, status: :created, location: @parameter }
+  #    else
+  #      format.html { render action: "new" }
+  #      format.json { render json: @parameter.errors, status: :unprocessable_entity }
+  #    end
+  #  end
+  #end
 
   # PUT /parameters/1
   # PUT /parameters/1.json
@@ -77,20 +77,20 @@ class ParametersController < ApplicationController
 
   # DELETE /parameters/1
   # DELETE /parameters/1.json
-  def destroy
-    @parameter = Parameter.find(params[:id])
-    @parameter.destroy
+  #def destroy
+  #  @parameter = Parameter.find(params[:id])
+  #  @parameter.destroy
 
-    respond_to do |format|
-      format.html { redirect_to parameters_url }
-      format.json { head :no_content }
-    end
-  end
+  #  respond_to do |format|
+  #    format.html { redirect_to parameters_url }
+  #    format.json { head :no_content }
+  #  end
+  #end
   
   private
 
     def sort_column
-      Parameter.column_names.include?(params[:sort]) ? params[:sort] : "name"
+      Parameter.column_names.include?(params[:sort]) ? params[:sort] : "4"
     end
 
     def sort_direction

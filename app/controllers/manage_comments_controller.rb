@@ -7,7 +7,7 @@ class ManageCommentsController < ApplicationController
   def index
 
     @q = Comment.search(params[:q])
-    @comments = @q.result(:distinct => true).order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page])
+    @comments = @q.result(:distinct => true).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
     @q.build_condition
      
     respond_to do |format|

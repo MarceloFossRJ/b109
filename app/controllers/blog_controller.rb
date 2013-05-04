@@ -3,7 +3,7 @@ class BlogController < ApplicationController
     
     @q = Post.search(params[:q])
     #@blogs = Post.where("is_published = ?", true).order("created_at").reverse_order.paginate(:per_page => 3, :page => params[:page])
-    @blogs = @q.result(:distinct => true).order(sort_column + ' ' + sort_direction).paginate(:per_page => 3, :page => params[:page])
+    @blogs = @q.result(:distinct => true).order(sort_column + ' ' + sort_direction).paginate(:per_page => Parameter.posts_per_page, :page => params[:page])
     @q.build_condition
     
     respond_to do |format|

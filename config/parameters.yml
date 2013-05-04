@@ -1,0 +1,26 @@
+# config/application.yml
+defaults: &defaults
+  user_interface:
+      records_per_page: 10
+  comments:
+      users_can_add_comment: true
+      only_logged_users_can_add_comment: true
+      comments_published_automatically: false
+  authentication:
+      linkedin_authentication: ture
+      github_authentication: true
+      gmail_authentication: true
+      facebook_authentication: true
+  application:
+      application_title: F055
+      root_page: home
+      
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

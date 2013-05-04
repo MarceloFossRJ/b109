@@ -18,5 +18,14 @@ module ApplicationHelper
     r = [['String',1],['Integer',2],['Number',3],['Date',4],['DateTime',5],['Currency',6]]
     return r
   end
-  
+
+  def parameter_root_page
+    a = [['Blog','blog']] + Page.all.map {|page| [page.title, page.id]} 
+    return a
+  end  
+
+  def true_false
+    a = [['True','true'], ['False', 'false']] 
+    return a
+  end
 end

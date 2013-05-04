@@ -8,7 +8,7 @@ class PagesController < ApplicationController
     #@pages = Page.all
 
     @q = Page.search(params[:q])
-    @pages = @q.result(:distinct => true).order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page])
+    @pages = @q.result(:distinct => true).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
     @q.build_condition
     
     respond_to do |format|

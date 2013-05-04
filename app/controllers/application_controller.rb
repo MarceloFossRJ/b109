@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  WillPaginate.per_page = Parameter.records_per_page
   
     def login_required
         if session[:uid]

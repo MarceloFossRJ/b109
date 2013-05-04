@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   def index
 
     @q = Category.search(params[:q])
-    @categories = @q.result(:distinct => true).order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page])
+    @categories = @q.result(:distinct => true).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
     @q.build_condition
 
     respond_to do |format|

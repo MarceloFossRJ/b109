@@ -18,7 +18,7 @@ class LoginController < ApplicationController
         #redirect_to_stored
         session[:user_id] = user.id
         
-        redirect_to users_url
+        redirect_to blogs_url
       else
         if session[:user_id]  
           session[:user_id] = nil

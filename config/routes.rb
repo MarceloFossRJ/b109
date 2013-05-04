@@ -1,5 +1,10 @@
 B109::Application.routes.draw do
 
+  get "export/index", :as => :exports
+  post "export/create"
+
+  root :to => 'home#index'
+  
   resources :manage_comments
   resources :parameters
   resources :images
@@ -14,8 +19,6 @@ B109::Application.routes.draw do
   get "home/index"
 
   get "blog/index", :as => :blogs
-
-#  get "blog/show"
   match "blog/:id" => "blog#show", :via => :get, :as => :blog
 #  resources :blog
 
@@ -42,6 +45,8 @@ B109::Application.routes.draw do
       put 'update_password'
       get 'access_denied'
     end
+    collection { get :signup }
+    collection { post :create_user }
   end
   
   resources :login

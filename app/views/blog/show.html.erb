@@ -28,18 +28,20 @@
 	<% end %>
 </div>
 
-<h3>Add Comment</h3>
-<% if current_user %>
-	<%= form_for [@blog, @comment] do |f| %>
-	<table class="table table-striped">
-  		<tbody>
-  			<tr>
-    			<td><%= f.text_area :comment, :size => '40x5' %></td>
-			</tr>
-  		</tbody>
-	</table>
-    <%= f.button :submit, :class => 'btn-primary' %>
+<% if Parameter.users_can_add_comment == 'true' %>
+	<h3>Add Comment</h3>
+	<% if current_user %>
+		<%= form_for [@blog, @comment] do |f| %>
+		<table class="table table-striped">
+  			<tbody>
+  				<tr>
+    				<td><%= f.text_area :comment, :size => '40x5' %></td>
+				</tr>
+  			</tbody>
+		</table>
+    	<%= f.button :submit, :class => 'btn-primary' %>
+		<% end %>
+	<% else %>
+		Please login to comment
 	<% end %>
-<% else %>
-	Please login to comment
 <% end %>

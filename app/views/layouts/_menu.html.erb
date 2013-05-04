@@ -1,7 +1,7 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">B109</a>	
+      <a class="brand" href="#"><%= Parameter.application_title %></a>	
       <div class="nav-collapse">
 	
 		<!-- Custom Menu -->	
@@ -61,6 +61,7 @@
 					<li><%= link_to "Comments Management", manage_comments_path %></li>
 					<li><%= link_to "Media Library", images_path %></li>
 					<li><%= link_to "Parameters", parameters_path %></li>
+					<li><%= link_to "Export", exports_path %></li>
 					<li><a href="#">Manage Templates</a></li>		
 					<li class="divider"></li>
 					<li class="nav-header">Admin Reports</li>
@@ -90,9 +91,14 @@
 		  </li>
         </ul>
   		<% else %>
-			<ul class="nav">
+			<ul class="nav pull-right">
 	          <li>
-				<%= link_to "Admin", login_index_path, :method => :get %>
+				<%= link_to "Login", login_index_path, :method => :get %>
+			  </li>
+	        </ul>
+			<ul class="nav pull-right">
+	          <li>
+				<%= link_to "Signup", signup_users_path, :method => :get %>
 			  </li>
 	        </ul>
 		<% end %>
