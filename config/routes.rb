@@ -1,8 +1,17 @@
 B109::Application.routes.draw do
 
   get "export/index", :as => :exports
-  post "export/create"
-
+  get "export/export_users", :as => :export_users
+  get "export/export_categories", :as => :export_categories
+  get "export/export_posts", :as => :export_posts
+  get "export/export_pages", :as => :export_pages
+  get "export/export_comments", :as => :export_comments
+  get "export/export_taggroups", :as => :export_taggroups
+  get "export/export_tags", :as => :export_tags
+  get "export/export_parameters", :as => :export_parameters
+  get "export/export_media", :as => :export_media
+  get "export/export_menus", :as => :export_menus
+                
   root :to => 'home#index'
   
   resources :manage_comments

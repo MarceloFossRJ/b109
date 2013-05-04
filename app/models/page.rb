@@ -16,4 +16,14 @@ class Page < ActiveRecord::Base
     tags.build
     self
   end
+  
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |u|
+        csv << u.attributes.values_at(*column_names)
+      end
+    end
+  end
+  
 end

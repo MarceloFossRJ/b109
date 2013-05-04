@@ -11,3 +11,33 @@
 <ul class="nav nav-tabs">
   <li class="active"><a href="#">List</a></li>
 </ul>
+<blockquote>
+<%= link_to "Users", export_users_path(format: "csv") %>
+</blockquote>
+<blockquote>	
+<%= link_to "Categories", export_categories_path(format: "csv") %>
+</blockquote>
+<blockquote>
+<%= link_to "Posts", export_posts_path(format: "csv") %>
+</blockquote>
+<blockquote>	
+<%= link_to "Pages", export_pages_path(format: "csv") %>
+</blockquote>
+<blockquote>
+<%= link_to "Comments", export_comments_path(format: "csv") %>
+</blockquote>
+<blockquote>
+<%= link_to "Tags", export_taggroups_path(format: "csv") %>
+</blockquote>
+<blockquote>
+<%= link_to "PostsPagesTags", export_tags_path(format: "csv") %>
+</blockquote>
+<blockquote>
+<%= link_to "Menus", export_menus_path(format: "csv") %>
+</blockquote>
+<blockquote>
+<%= link_to "Parameters", export_parameters_path(format: "csv") %>
+</blockquote>
+<blockquote>
+<%= link_to "Media", export_media_path %>
+</blockquote>

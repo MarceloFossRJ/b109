@@ -6,6 +6,15 @@ class Parameter < ActiveRecord::Base
   validates_presence_of :name, :group, :value
   validates_uniqueness_of :name
 
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |u|
+        csv << u.attributes.values_at(*column_names)
+      end
+    end
+  end
+
   
   def self.records_per_page
     u=Parameter.find_by_name('records_per_page')
@@ -37,7 +46,7 @@ class Parameter < ActiveRecord::Base
     return u.value.to_s
   end
 
-
+############
 
   def self.linkedin_authentication
     u=Parameter.find_by_name('linkedin_authentication')

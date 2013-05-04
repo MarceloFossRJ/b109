@@ -19,6 +19,15 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
   validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message => "Invalid email"
   validates_presence_of :password, :if => :should_validate_password?
+
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |user|
+        csv << user.attributes.values_at(*column_names)
+      end
+    end
+  end
   
   def should_validate_password?
     updating_password || new_record?
