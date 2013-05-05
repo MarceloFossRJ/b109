@@ -11,7 +11,7 @@
 <ul class="nav nav-tabs">
   <li class="active"><a href="#">List</a></li>
   <li><%= link_to t('.new', :default => t("helpers.links.new")),new_menu_path %></li>
-  <li><a href="#">Versions</a></li>	
+  <li><%= link_to "Versions",versions_menus_path %></li>
   
   <li class="pull-right">
 		<%= search_form_for @q, :html => { :class => 'navbar-search pull-right' }   do |f| %>		

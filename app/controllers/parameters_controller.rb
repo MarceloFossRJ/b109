@@ -75,6 +75,14 @@ class ParametersController < ApplicationController
     end
   end
 
+  def versions
+      @versions = Version.where("item_type=?", "Parameter").order('created_at desc').paginate(:page => params[:page])
+      respond_to do |format|
+          format.html # index.html.erb
+          format.json { render json: @versions }
+      end
+  end
+  
   # DELETE /parameters/1
   # DELETE /parameters/1.json
   #def destroy

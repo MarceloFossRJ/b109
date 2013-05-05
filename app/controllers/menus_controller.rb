@@ -86,6 +86,14 @@ class MenusController < ApplicationController
     end
   end
   
+  def versions
+      @versions = Version.where("item_type=?", "Menu").order('created_at desc').paginate(:page => params[:page])
+      respond_to do |format|
+          format.html # index.html.erb
+          format.json { render json: @versions }
+      end
+  end
+  
   private
 
     def sort_column

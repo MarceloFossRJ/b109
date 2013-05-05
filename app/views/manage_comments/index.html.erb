@@ -10,7 +10,8 @@
 <!-- Tab menu-->
 <ul class="nav nav-tabs">
   <li class="active"><a href="#">List</a></li>
-  
+  <li><%= link_to "Versions",versions_manage_comments_path %></li>
+
   <li class="pull-right">
 		<%= search_form_for @q,:url => manage_comments_path , :html => { :class => 'navbar-search pull-right' }   do |f| %>		
 				<%= f.text_field :comment_cont, :class => 'search-query', :placeholder => "Quick Search" %>

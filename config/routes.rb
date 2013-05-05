@@ -14,8 +14,14 @@ B109::Application.routes.draw do
                 
   root :to => 'home#index'
   
-  resources :manage_comments
-  resources :parameters
+  resources :manage_comments do
+    collection { get :versions }
+  end
+  
+  resources :parameters do
+    collection { get :versions }
+  end
+  
   resources :images
 
 #  get "errors/unauthorized"
@@ -31,21 +37,29 @@ B109::Application.routes.draw do
   match "blog/:id" => "blog#show", :via => :get, :as => :blog
 #  resources :blog
 
-  resources :menus
+  resources :menus do
+    collection { get :versions }
+  end
 
   resources :pages do
     resources :tags
+    collection { get :versions }
   end
 
   #resources :comments
-  resources :tag_groups
+  resources :tag_groups do 
+    collection { get :versions }
+  end
 
   resources :posts do
     resources :tags
     resources :comments
+    collection { get :versions }
   end
 
-  resources :categories
+  resources :categories do
+    collection { get :versions }
+  end
 
   resources :users do
     collection { get :versions }
@@ -56,6 +70,7 @@ B109::Application.routes.draw do
     end
     collection { get :signup }
     collection { post :create_user }
+    collection { get :versions }
   end
   
   resources :login

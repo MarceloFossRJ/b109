@@ -1,0 +1,41 @@
+<%- model_class = Menu -%>
+<h1>Menus Versions</h1>
+<ul class="breadcrumb">  
+	<li><a href="#">Home</a> <span class="divider">></span></li>  
+	<li><a href="#">Admin</a> <span class="divider">></span></li>  
+	<li><%= link_to "Menus", menus_path %> <span class="divider">></span>  </li>  
+	<li class="active">Versions</li>  
+</ul>
+<!-- Tab menu-->
+<ul class="nav nav-tabs">
+  <li><%= link_to "List",menus_path %></li>
+  <li><%= link_to t('.new', :default => t("helpers.links.new")),new_menu_path %></li>
+  <li class="active"><a href="#">Versions</a></li>	  
+</ul>
+
+<!-- Versions table-->
+<table class="table table-striped table-condensed table-hover">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Event</th>
+      <th>Who</th>
+      <th>Date</th>
+      <th>Object</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @versions.each do |version| %>
+      <tr>
+        <td><%= version.id %></td>
+        <td><%= version.event %></td>
+        <td><%= User.where("id=?", version.whodunnit.to_i).pluck(:login)[0] unless version.whodunnit.blank? %></td>
+        <td><%= version.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+        <td><%= version.object %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @versions %>
+

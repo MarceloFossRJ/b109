@@ -145,6 +145,14 @@ class UsersController < ApplicationController
     end    
   end
   
+  def versions
+      @users = Version.where("item_type=?", "User").order('created_at desc').paginate(:page => params[:page])
+      respond_to do |format|
+          format.html # index.html.erb
+          format.json { render json: @users }
+      end
+  end
+  
   private
 
     def sort_column
