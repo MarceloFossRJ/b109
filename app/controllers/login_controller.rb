@@ -9,14 +9,21 @@ class LoginController < ApplicationController
    
    def create
     #if request.post?
-      user = User.find(:first, :conditions=>["login = ?", params[:user][:login]])
-      session[:uid] = user
+      u = User.find(:first, :conditions=>["login = ?", params[:user][:login]])
+      session[:uid] = u
       
+      if u.nil?
+        if session[:user_id]  
+          session[:user_id] = nil
+        end
+        session[:uid] = nil
+        flash[:warning] = "Login unsuccessful"
+        redirect_to :action => 'index'      
       
-      if session[:uid] == User.authenticate(params[:user][:login], params[:user][:password])
+      elsif session[:uid] == User.authenticate(params[:user][:login], params[:user][:password])
         #flash[:success]  = "Login successful"
         #redirect_to_stored
-        session[:user_id] = user.id
+        session[:user_id] = u.id
         
         redirect_to blogs_url
       else

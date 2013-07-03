@@ -16,6 +16,8 @@ Parameter.create(:group => 'authentication', :name => 'gmail_authentication', :v
 Parameter.create(:group => 'application', :name => 'application_title', :value => 'F055', :description => '.')
 Parameter.create(:group => 'application', :name => 'root_page', :value => 'home', :description => '.')
 Parameter.create(:group => 'user_interface', :name => 'posts_per_page', :value => '3', :description => '.')
+User.create(:login => 'Admin', :name => 'Admin', :email => 'admin@admin.com', :password => 'admin', :password_confirmation => 'admin', :is_admin => 'true', :is_active => 'true' )
+Page.create(:title => 'home', :content => 'Home', :user_id => '1')
 
 #Parameter.create (group: '', name: '', value: '', description: '')
 

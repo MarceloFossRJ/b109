@@ -3,12 +3,7 @@
   <h1>Login</h1>
 </div>
 
-<% flash.each do |name, msg| %>
-  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-	  <a class="close" data-dismiss="alert">x</a>
-    <%= msg  %>
-  </div>
-<% end %>
+
 
 <%= simple_form_for :user, :html => { :class => 'form-horizontal' } do |f| %>
 

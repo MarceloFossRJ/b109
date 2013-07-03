@@ -5,7 +5,7 @@ class HomeController < ApplicationController
       if p == 'blog'
         redirect_to blogs_path
       else
-        @home = Page.find(p)
+        @home = Page.find_by_title(p)
         respond_to do |format|
           format.html # index.html.erb
           format.json { render json: @home }        
