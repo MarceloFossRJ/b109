@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '1.9.3'
 
 gem 'rails', '3.2.11'
 
@@ -34,6 +35,7 @@ gem 'tinymce-rails'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'omniauth-github'
+gem 'unicorn'
 
 #Installing bcrypt-ruby (3.0.1) with native extensions
 #Installing orm_adapter (0.4.0)
