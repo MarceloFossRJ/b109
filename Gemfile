@@ -19,10 +19,11 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'twitter-bootstrap-rails'
   gem 'uglifier', '>= 1.0.3'
   gem 'less-rails'
 end
+
+gem 'twitter-bootstrap-rails'
 
 gem 'jquery-rails'
 gem 'simple_form'
@@ -30,7 +31,7 @@ gem 'country_select'
 gem 'will_paginate'
 gem 'paper_trail'
 gem 'ransack'
-gem 'tinymce-rails'
+#gem 'tinymce-rails'
 #gem 'redactor-rails'
 gem 'carrierwave'
 gem 'mini_magick'
